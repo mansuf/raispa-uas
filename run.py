@@ -35,6 +35,11 @@ for key_env, value_env in db_data.items():
     docker_args.append("-e")
     docker_args.append(f"{key_env}={value_env}")
 
+# Tell php scripts that we're working on docker process
+docker_args.append("-e")
+docker_args.append("DOCKER_PROCESS=true")
+
+
 image = 'raispa-uas'
 
 docker_args.append(image)
