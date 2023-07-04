@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Website anda telah berfungsi</h1>
-    <?<php>
+    ?<php>
 
     $db_scheme = apache_getenv("DB_SCHEME");
     echo "$db_scheme";
