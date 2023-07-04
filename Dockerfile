@@ -7,4 +7,3 @@ COPY . /app
 COPY ./raispa.apache.conf /etc/apache2/sites-available
 
 RUN a2ensite raispa.apache.conf
-RUN service apache2 reload
