@@ -1,6 +1,11 @@
 import subprocess
 import argparse
 import secrets
+import json
+
+db_data: dict = None
+with open("db.json", "r") as o:
+    db_data = json.loads(o.read())
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-d', '--daemon', action='store_true')
@@ -25,6 +30,9 @@ docker_args = [
 
 if args.daemon:
     docker_args.append('-d')
+
+for key_env, value_env in db_data.items():
+    docker_args.append(f"{key_env}={value_env}")
 
 image = 'raispa-uas'
 
