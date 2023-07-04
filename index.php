@@ -10,7 +10,7 @@
     <h1>Website anda telah berfungsi</h1>
     <?php
 
-    $db_scheme = apache_getenv("DB_SCHEME");
+    $db_scheme = getenv("DB_SCHEME");
     echo "$db_scheme";
 
     ?>    
