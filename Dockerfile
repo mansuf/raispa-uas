@@ -1,13 +1,10 @@
-FROM ubuntu:latest
+FROM php:8.2-apache
 
 WORKDIR /app
-
 COPY . /app
 
 # Copy apache2 website config
 COPY ./raispa.apache.conf /etc/apache2/sites-available
 
-RUN apt-get update
-RUN apt-get install apache2 -y
-
-
+RUN a2ensite raispa.apache.conf
+RUN service apache2 reload
