@@ -17,6 +17,8 @@ docker_args = [
     'run',
     '-p',
     f'127.0.0.1:{port}:80',
+    '-h',
+    'raispa.private.mansuf.link',
     '--name',
     container_name
 ]
@@ -28,10 +30,4 @@ image = 'raispa-uas'
 
 docker_args.append(image)
 
-app_args = [
-    'service',
-    'apache2',
-    'start'
-]
-
-subprocess.run(docker_args + app_args)
+subprocess.run(docker_args)
