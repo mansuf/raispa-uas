@@ -2,6 +2,19 @@
 include "db.php";
 session_start();
 
+// Query untuk mendapatkan ID obat terakhir
+$query = "SELECT MAX(trans_id) AS max_id FROM ob_masuk";
+$result = mysqli_query($mysqli, $query);
+$row = mysqli_fetch_assoc($result);
+$max_id = $row['max_id'];
+
+// Menentukan ID obat baru
+if ($max_id === null) {
+    $new_id = 'TOM001';
+} else {
+    $new_id = 'TOM' . str_pad((intval(substr($max_id, 3)) + 1), 3, '0', STR_PAD_LEFT);
+}
+
 // Menangani form submit
 if (isset($_POST['submit'])) {
     // Mendapatkan data dari form
@@ -103,21 +116,6 @@ if (isset($_POST['submit'])) {
     document.formObatMasuk.total_stock.value = (hasil);
   }
 </script>
-
-<?php  
-// Query untuk mendapatkan ID obat terakhir
-$query = "SELECT MAX(trans_id) AS max_id FROM ob_masuk";
-$result = mysqli_query($mysqli, $query);
-$row = mysqli_fetch_assoc($result);
-$max_id = $row['max_id'];
-
-// Menentukan ID obat baru
-if ($max_id === null) {
-    $new_id = 'TOM001';
-} else {
-    $new_id = 'TOM' . str_pad((intval(substr($max_id, 3)) + 1), 3, '0', STR_PAD_LEFT);
-}
-?>
 
 <!doctype html>
 <html lang="en">
