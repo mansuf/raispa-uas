@@ -1,0 +1,127 @@
+.custom-bg-color {
+    background-color: #93e5ab;
+}
+
+.custom-text-color {
+    background-color: #93e5ab;
+}
+
+.custom-icon {
+    color: #4e876c;
+    font-size: 25px;
+}
+
+.custom-icon:hover {
+    color: #00241b; 
+    font-size: 25px;
+}
+.cust {
+    color: #60a585;
+    font-size: 25px;
+}
+.bg-green {
+    background-color: #4e876c;
+}
+
+.nav-link:hover {
+    background-color: #93e5ab;
+}
+
+.display-4 {
+    font-weight: bold;
+}
+
+.card-body-icon {
+    position: absolute;
+    z-index: 0;
+    top: 25px;
+    right: 4px;
+    opacity: 0.4;
+    font-size: 90px;
+}
+
+.main-footer {
+    position: fixed;
+    bottom: 0;
+}
+
+.sidebar {
+    height: 100vh;
+}
+
+.container {
+    margin-top: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: calc(100% - 250px); /* Mengurangi lebar container dengan lebar sidebar */
+  }
+
+  @media (max-width: 767px) {
+    .container {
+      width: 100%; /* Set lebar container menjadi 100% pada layar dengan lebar maksimum 767px */
+    }
+  }
+
+.custom-alert {
+    max-width: 1200px; /* Sesuaikan dengan ukuran yang diinginkan */
+    margin: 0 auto;
+}
+
+.custom-form {
+    max-width: 1200px; /* Sesuaikan dengan ukuran yang diinginkan */
+    margin: 0 auto;
+}
+
+.custom-alert-color {
+    background-color: #cdffc8;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+  
+.row.no-gutters {
+    flex-grow: 1;
+}
+  
+.col-md-2 {
+    display: flex;
+    flex-direction: column;
+}
+  
+.col-md-10 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+  
+  /* New CSS */
+.col-md-10 .p-5 {
+    flex-grow: 1;
+}
+
+.custom-btn {
+    width: none;
+}
+
+.custom-btn-color {
+    background-color: #93e5ab;
+    font-weight: 500;
+}
+
+.custom-btn-color:hover {
+    background-color: #4e876c;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: rgb(128, 0, 0);
+    color: white;
+}
+
+.table th:nth-child(7), .table td:nth-child(7), .table td:nth-child(8) {
+    width: 10px; /* Ganti nilai sesuai dengan panjang yang diinginkan */
+}
