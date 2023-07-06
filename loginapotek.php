@@ -25,7 +25,7 @@ if (isset($_POST['proses'])) {
     // Memeriksa kredensial pengguna dengan menggunakan fungsi authenticateUser
     if (authenticateUser($username, $password, $mysqli)) {
         // Jika kredensial valid, redirect pengguna ke halaman dashboard
-        header("Location: dashboard.php");
+        header("Location: index.php");
         exit();
     } else {
         // Jika kredensial tidak valid, menampilkan popup

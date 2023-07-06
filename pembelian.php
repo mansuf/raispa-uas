@@ -166,7 +166,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="col-md-2 bg-green  mt-2 pr-3 pt-4">
       <ul class="nav flex-column ml-3 mb-5">
         <li class="nav-item">
-          <a class="nav-link text-white" href="dashboard.php"><i class="fa-solid fa-house mr-2"></i>Beranda</a>
+          <a class="nav-link text-white" href="index.php"><i class="fa-solid fa-house mr-2"></i>Beranda</a>
           <hr class="custom-bg-color">
         </li>
         <li class="nav-item">
