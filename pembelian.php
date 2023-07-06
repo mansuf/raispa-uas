@@ -1,9 +1,42 @@
 <?php
+include 'db.php';
 session_start();
 
 // Periksa apakah pengguna sudah login
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   header("Location: loginapotek.php");
+  exit();
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Retrieve form data
+  $nama_pelanggan = $_POST['nama'];
+  $nomor_handphone = $_POST['telp'];
+  $alamat = $_POST['alamat'];
+  $penyakit = $_POST['penyakit'];
+  $jumlah_obat = $_POST['jumlahobat'];
+  $nama_obat = $_POST['namaobat'];
+  $tipe_obat = $_POST['tipeobat'];
+  $harga_obat = $_POST['harga'];
+  $total_harga = $_POST['total'];
+  $tanggal_transaksi = $_POST['tgltrans'];
+
+  
+  // Insert into customer table
+  $insertCustomerQuery = "INSERT INTO customer (cus_name, phone_num, alamat, penyakit, tgltransaksi) 
+                          VALUES ('$nama_pelanggan', '$nomor_handphone', '$alamat', '$penyakit', '$tanggal_transaksi')";
+  mysqli_query($mysqli, $insertCustomerQuery);
+
+  $update = "UPDATE dt_obat SET stock = stock - $jumlah_obat WHERE drug_name = '$nama_obat'";
+  mysqli_query($mysqli, $update);
+
+  // Insert into dt_transaksi table
+  $insertTransaksiQuery = "INSERT INTO dt_transaksi (cus_name, phone_num, tgltransaksi, drug_amount, drug_name, drug_type, unit_price, ttl_price) 
+                           VALUES ('$nama_pelanggan', '$nomor_handphone', '$tanggal_transaksi', '$jumlah_obat', '$nama_obat', '$tipe_obat', $harga_obat, '$total_harga')";
+  mysqli_query($mysqli, $insertTransaksiQuery);
+
+  header("Location: laporan.php");
   exit();
 }
 ?>
@@ -87,42 +120,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     document.formPembelian.total.value = (hasil);
   }
 </script>
-
-<?php
-
-include 'db.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Retrieve form data
-  $nama_pelanggan = $_POST['nama'];
-  $nomor_handphone = $_POST['telp'];
-  $alamat = $_POST['alamat'];
-  $penyakit = $_POST['penyakit'];
-  $jumlah_obat = $_POST['jumlahobat'];
-  $nama_obat = $_POST['namaobat'];
-  $tipe_obat = $_POST['tipeobat'];
-  $harga_obat = $_POST['harga'];
-  $total_harga = $_POST['total'];
-  $tanggal_transaksi = $_POST['tgltrans'];
-
-  
-  // Insert into customer table
-  $insertCustomerQuery = "INSERT INTO customer (cus_name, phone_num, alamat, penyakit, tgltransaksi) 
-                          VALUES ('$nama_pelanggan', '$nomor_handphone', '$alamat', '$penyakit', '$tanggal_transaksi')";
-  mysqli_query($mysqli, $insertCustomerQuery);
-
-  $update = "UPDATE dt_obat SET stock = stock - $jumlah_obat WHERE drug_name = '$nama_obat'";
-  mysqli_query($mysqli, $update);
-
-  // Insert into dt_transaksi table
-  $insertTransaksiQuery = "INSERT INTO dt_transaksi (cus_name, phone_num, tgltransaksi, drug_amount, drug_name, drug_type, unit_price, ttl_price) 
-                           VALUES ('$nama_pelanggan', '$nomor_handphone', '$tanggal_transaksi', '$jumlah_obat', '$nama_obat', '$tipe_obat', $harga_obat, '$total_harga')";
-  mysqli_query($mysqli, $insertTransaksiQuery);
-
-  header("Location: laporan.php");
-  exit();
-}
-?>
 
 <!doctype html>
 <html lang="en">
