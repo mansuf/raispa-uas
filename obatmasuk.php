@@ -1,5 +1,28 @@
 <?php
+include "db.php";
 session_start();
+
+// Menangani form submit
+if (isset($_POST['submit'])) {
+    // Mendapatkan data dari form
+    $id_trans = $_POST['idtransaksi'];
+    $tgl_masuk = $_POST['tglmasuk'];
+    $idobat = $_POST['kode_obat'];
+    $restock = $_POST['jumlah_masuk'];
+    $total_stock = $_POST['total_stock'];
+
+
+    // Query untuk menyimpan data ke tabel obat
+    $insert_query = "INSERT INTO ob_masuk (trans_id, entry_date, drug_id, restock_amount) 
+                     VALUES ('$new_id', '$tgl_masuk', '$idobat', '$restock')";
+    mysqli_query($mysqli, $insert_query);
+
+    $update_query = "UPDATE dt_obat SET stock = '$total_stock' WHERE drug_id = '$idobat'";
+    mysqli_query($mysqli, $update_query);
+    // Redirect ke halaman dataobat.php setelah data berhasil ditambahkan
+    header("Location: pemasukan.php");
+    exit();
+}
 ?>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -82,8 +105,6 @@ session_start();
 </script>
 
 <?php  
-include "db.php";
-
 // Query untuk mendapatkan ID obat terakhir
 $query = "SELECT MAX(trans_id) AS max_id FROM ob_masuk";
 $result = mysqli_query($mysqli, $query);
@@ -95,28 +116,6 @@ if ($max_id === null) {
     $new_id = 'TOM001';
 } else {
     $new_id = 'TOM' . str_pad((intval(substr($max_id, 3)) + 1), 3, '0', STR_PAD_LEFT);
-}
-
-// Menangani form submit
-if (isset($_POST['submit'])) {
-    // Mendapatkan data dari form
-    $id_trans = $_POST['idtransaksi'];
-    $tgl_masuk = $_POST['tglmasuk'];
-    $idobat = $_POST['kode_obat'];
-    $restock = $_POST['jumlah_masuk'];
-    $total_stock = $_POST['total_stock'];
-
-
-    // Query untuk menyimpan data ke tabel obat
-    $insert_query = "INSERT INTO ob_masuk (trans_id, entry_date, drug_id, restock_amount) 
-                     VALUES ('$new_id', '$tgl_masuk', '$idobat', '$restock')";
-    mysqli_query($mysqli, $insert_query);
-
-    $update_query = "UPDATE dt_obat SET stock = '$total_stock' WHERE drug_id = '$idobat'";
-    mysqli_query($mysqli, $update_query);
-    // Redirect ke halaman dataobat.php setelah data berhasil ditambahkan
-    header("Location: pemasukan.php");
-    exit();
 }
 ?>
 
