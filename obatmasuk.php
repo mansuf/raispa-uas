@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
     function getkey(e)
@@ -78,7 +82,6 @@
 </script>
 
 <?php  
-session_start();
 include "db.php";
 
 // Query untuk mendapatkan ID obat terakhir

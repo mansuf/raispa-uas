@@ -32,8 +32,8 @@ if (isset($_POST['submit'])) {
     $tipe = $_POST['tipe'];
 
     // Query untuk menyimpan data ke tabel obat
-    $insert_query = "INSERT INTO dt_obat (drug_id, drug_name, buy_price, sell_price, type) 
-                     VALUES ('$new_id', '$nama_obat', '$harga_beli', '$harga_jual', '$tipe')";
+    $insert_query = "INSERT INTO dt_obat (drug_id, drug_name, buy_price, sell_price, type, stock) 
+                     VALUES ('$new_id', '$nama_obat', '$harga_beli', '$harga_jual', '$tipe', '0')";
     mysqli_query($mysqli, $insert_query);
 
     // Redirect ke halaman dataobat.php setelah data berhasil ditambahkan
