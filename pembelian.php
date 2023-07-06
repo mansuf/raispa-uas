@@ -1,3 +1,10 @@
+<?php
+// Periksa apakah pengguna sudah login
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+  header("Location: loginapotek.php");
+  exit();
+}
+?>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
     function getkey(e)
@@ -80,11 +87,6 @@
 </script>
 
 <?php
-// Periksa apakah pengguna sudah login
-if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-  header("Location: loginapotek.php");
-  exit();
-}
 
 include 'db.php';
 
