@@ -1,4 +1,4 @@
-FROM php:8.2-mysql
+FROM php:8.2-apache
 
 WORKDIR /app
 COPY . /app
